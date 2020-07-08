@@ -7,4 +7,14 @@ assignees: correllink, KipCrossing
 
 ---
 
-*Write your Ground Truthing feedback here*
+## Describe the issue
+
+*insert text*
+
+## steps to reproduce the issue
+
+*insert text*
+
+## Suggested changes
+
+*insert text*
