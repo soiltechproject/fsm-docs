@@ -6,6 +6,8 @@ A conditioned Latin hypercube method for sampling in the presence of ancillary i
 
 Inverse meta-modelling to estimate soil available water capacity at high spatial resolution across a farm
 
+Modelling soil attribute depth functions with equal-area quadratic smoothing splines 
+
 Validation of digital soil maps at different spatial supports
 
 boundaryline analysis of fieldscale yield response to soil properties
