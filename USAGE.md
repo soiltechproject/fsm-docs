@@ -1,4 +1,13 @@
 # Soiltech Usage Docs
+
+## Inrto
+
+~Talk about the basics~
+
+---
+
+## Core Usage
+
 ## Step 1: Create Your Paddocks 
 
 Before creating your paddocks, you will need to prepare your datasets using the `GridInputFile` object. This may be done with any type of measurements such as elevation or gamma radiometric readings. 
@@ -45,4 +54,23 @@ Paddock(otherGridFiles=[clayFile_10_30, clayFile_30_60], bounds=bounds, soilPoin
 
 Now we have created a paddock that we can perform some processing with. In this case, we did not include anything in our `soilPointDataArray`. We will learn how to prepare the `soilPointDataArray` in the next section.
 
-## Step 2: Prepare the soilPointDataArray
+### Step 2: Prepare the soilPointDataArray
+
+### Step 3: SSLRGenerator
+
+1. make config
+2. use SSLRGenerator
+
+### Step 4: DSMGenerator
+
+### Step 5: YLFGenerator
+
+### Step 6: ImageGenerator
+
+---
+
+## Advanced Usage
+
+### ZoneProcessor
+
+### CLHCProcessor
