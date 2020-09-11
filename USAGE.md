@@ -35,6 +35,8 @@ val bounds  = new GeometryJSON().readPolygon(boundInput)
 val ndviFile1 =  NDVIInputfile(id=boundInput.getName, red=redFile, nir=nirFile, bounds=bounds)
 ```
 
+~need to talk about the boundary file~
+
 Next we create a Paddock:
 
 ```scala
