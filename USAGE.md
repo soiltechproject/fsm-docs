@@ -8,7 +8,7 @@
 
 ## Core Usage
 
-## Step 1: Create Your Paddocks 
+### Step 1: Create Your Paddocks 
 
 Before creating your paddocks, you will need to prepare your datasets using the `GridInputFile` object. This may be done with any type of measurements such as elevation or gamma radiometric readings. 
 
