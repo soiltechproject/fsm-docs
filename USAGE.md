@@ -24,7 +24,7 @@ val clayFile1 = GridInputFile(uid=“clay_10_30”, metricType=“clay”, file=
 
 Notice `isModel = true`. This is set to true if the input data is not directly measured. 
 
-We've also included an `NDVIfile` for you to help group the data that is needed (*nir* and *red*) to calculate the *ndvi*. Create your *nir* and *red* GridInputFile's as you did above then:
+We've also included an `NDVIInputfile` for you to help group the data that is needed (*nir* and *red*) to calculate the *ndvi*. Create your *nir* and *red* GridInputFile's as you did above then:
 
 ```scala
 import org.geotools.geojson.geom.GeometryJSON
@@ -32,7 +32,7 @@ import org.geotools.geojson.geom.GeometryJSON
 val boundInput = new File("boundary.json")
 val bounds  = new GeometryJSON().readPolygon(boundInput)
 
-val ndviFile1 =  NDVIFile(boundInput.getName, nir, red, bounds)
+val ndviFile1 =  NDVIInputfile(id=boundInput.getName, red=redFile, nir=nirFile, bounds=bounds)
 ```
 
 Next we create a Paddock:
@@ -41,6 +41,6 @@ Next we create a Paddock:
 Paddock(otherGridFiles=[clayFile1], bounds=bounds, soilPointDataArray=Seq(), ndviFile=[ndviFile1])
 ```
 
-Now we have created a paddock that we can perform some processing on. In this case, we did not include anything in our `soilPointDataArray`. Will will learn how to prepare the `soilPointDataArray` in the next section.
+Now we have created a paddock that we can perform some processing with. In this case, we did not include anything in our `soilPointDataArray`. We will learn how to prepare the `soilPointDataArray` in the next section.
 
 ## Step 2: Prepare the soilPointDataArray
