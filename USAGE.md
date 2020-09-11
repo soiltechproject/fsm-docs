@@ -29,10 +29,10 @@ We've also included an `NDVIfile` for you to help group the data that is needed 
 ```scala
 import org.geotools.geojson.geom.GeometryJSON
 
-val boundInput = new File("path/to/input/dir")
+val boundInput = new File("boundary.json")
 val bounds  = new GeometryJSON().readPolygon(boundInput)
 
-val ndviFile1 =  NDVIFile(boundaryFile.getName, nir, red, bounds)
+val ndviFile1 =  NDVIFile(boundInput.getName, nir, red, bounds)
 ```
 
 Next we create a Paddock:
