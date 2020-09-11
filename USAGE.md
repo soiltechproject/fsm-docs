@@ -19,7 +19,7 @@ Some soil observations, by nature, come with a depth range and will be needed to
 ```scala
 val inputDir = Some(new File("path/to/input/dir"))
 val clayInput = new File(inputDir.get, "clay_10_30.tif").toURI.toURL
-val clayFile1 = GridInputFile(uid=“clay_10_30”, metricType=“clay”, file=clayInput, fileType=MetricFormat.Tiff, depth=(10,30), isModel=true)
+val clayFile_10_30 = GridInputFile(uid=“clay_10_30”, metricType=“clay”, file=clayInput, fileType=MetricFormat.Tiff, depth=(10,30), isModel=true)
 ```
 
 Notice `isModel = true`. This is set to true if the input data is not directly measured. 
@@ -38,7 +38,7 @@ val ndviFile1 =  NDVIInputfile(id=boundInput.getName, red=redFile, nir=nirFile, 
 Next we create a Paddock:
 
 ```scala
-Paddock(otherGridFiles=[clayFile1], bounds=bounds, soilPointDataArray=Seq(), ndviFile=[ndviFile1])
+Paddock(otherGridFiles=[clayFile_10_30, clayFile_30_60], bounds=bounds, soilPointDataArray=Seq(), ndviFile=[ndviFile1])
 ```
 
 Now we have created a paddock that we can perform some processing with. In this case, we did not include anything in our `soilPointDataArray`. We will learn how to prepare the `soilPointDataArray` in the next section.
