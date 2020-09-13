@@ -8,12 +8,12 @@
 /**
   * GridInputFile - For holding information related to the input file 
   * @param uid:String - A unique identifier 
-  * @param metricType:String
-  * @param file:URL
-  * @param fileType:MetricFormat.Value
-  * @param depth:Option[(Double,Double)] = None
-  * @param isModel:Boolean = false
-  * @param category:Option[String] = None
+  * @param metricType:String - The property that has been maeured
+  * @param file:URL - the location of the file
+  * @param fileType:MetricFormat.Value - can be Tiff, NetCDF or GDAL_VRT. eg use MetricFormat.Tiff
+  * @param depth:Option[(Double,Double)] = None - Use if the input has a depth range (eg clay 10 to 30 cm)
+  * @param isModel:Boolean = false - Use if the input is maddled and not meadured directly. @shaz perhaps this should be changed to isIndirect, or something
+  * @param category:Option[String] = None - @shaz, not sure
   */
 
 case class GridInputFile(uid:String, metricType:String, file:URL, fileType:MetricFormat.Value, depth:Option[(Double,Double)] = None, isModel:Boolean = false, category:Option[String] = None)
@@ -60,4 +60,20 @@ case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPoin
   * @param other:Option[String] = None - other description that may have come with the result 
   */
 case class Result(attribute:String,value:Any,`type`:Option[String] = None, units:Option[String] = None,other:Option[String] = None)
+```
+
+#### PointDataset
+
+```scala
+/**
+  * PointDataset 
+  * @param 
+  * @param 
+  * @param 
+  * @param 
+  * @param 
+  * @param 
+  * @param 
+  */
+case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]], attributes:Seq[PointAttribute], location:Coordinate, depthFromTo:(Double,Double), dateTaken:Date, paddockId:Option[String] = None)
 ```
