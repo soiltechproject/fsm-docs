@@ -136,7 +136,7 @@ case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, 
 #### ZoneLayer
 
 
-````scala
+```scala
 /**
   * ZoneLayer
   * @param name:String
@@ -146,9 +146,60 @@ case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, 
   * @param extraFiles:Seq[File]=Seq()
   */
 case class ZoneLayer(name:String, file:File, zoneStats:List[ZoneLayerStats],`type`:String = "zone", extraFiles:Seq[File]=Seq()) extends Layer
+
 ```
 
 
 #### CompositeLayer 
 
-needs rethinking @shaz
+needs discussion @shaz
+
+
+---
+
+## Methods
+
+### Generators
+
+The generators are the methods that generate outputs. Depening on the user defined setting, the generators will produce the corrisponding outputs.
+
+Typically, generators take an Array of paddocks, a Dataset object and a config object.
+
+The config object will define how the generator will run. Therefore before running a generator, the user needs to build a corisponding config object.
+
+#### LocationGenerator
+
+
+~Needs a bit of a refactor~
+
+Config:
+
+```scala
+/**
+  * LocationGeneratorConfig - 
+  * @param zones number of KMeans zones to created
+  * @param metrics set of the metrics (Dimensions) used in this process
+  * @param subSample When set perform a stratified sub sampling on each of the zones
+  */
+case class LocationGeneratorConfig(zones:Int,metrics:Seq[KMeansMetricConfig],subSample:Option[LHCConfig] = None,outputTiff:Boolean = false) 
+```
+
+Generator:
+
+```scala
+/**
+  * LocationGenerator
+  * @param paddocks:Iterable[Paddock]
+  * @param config:LocationGeneratorConfig
+  * @param ds:Dataset
+  */
+LocationGenerator(paddocks:Iterable[Paddock], config:KMeansConfig, ds:Dataset)
+```
+
+#### DSMGenerator
+
+#### YLFGenerator
+
+#### ImageGenerator
+
+### Processors
