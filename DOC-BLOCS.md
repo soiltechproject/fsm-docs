@@ -198,6 +198,58 @@ LocationGenerator(paddocks:Iterable[Paddock], config:KMeansConfig, ds:Dataset)
 
 #### DSMGenerator
 
+Congig:
+
+```scala
+
+/**
+  * DSMGeneratorConfig
+  * @param 
+  * @param 
+  * @param 
+  */
+case class DSMGeneratorConfig (sampleField:String,
+                            samples:Option[Seq[SamplePoint]],
+                            depths:List[(Double,Double)],
+                            metrics:List[String],
+
+                            // extra things to include in regression model
+                            includeLatLong:Option[Boolean],
+                            includePaddockId:Option[Boolean],
+
+                           // user supplied range to use for results (colours on map)
+                            clipRange:Option[(Double,Double)],
+                           // remove samples that are outside of
+                            filterExtremeValues:Option[Boolean],
+
+                           // colour style
+                            renderStyle:Option[String],
+
+                           // mixing result with another map
+                            mixRatio:Double = 0.5,
+                            mixMetric:Option[String],
+
+                           // krigin method (advanced)
+                            krigMethod:Option[String],
+                           // depths to project results to
+                            splineDepths:Option[List[(Double,Double)]],
+                            groupNearPaddocks:Option[Boolean],
+                            sumProfile:Option[Boolean]
+                           )
+```
+
+Generator:
+
+```scala
+/**
+  * DSMGenerator
+  * @param paddocks:Iterable[Paddock]
+  * @param config:DSMGeneratorConfig
+  * @param ds:Dataset
+  */
+DSMGenerator(paddocks:Iterable[Paddock],ds:Dataset, cfg:DSMGeneratorConfig)
+```
+
 #### YLFGenerator
 
 #### ImageGenerator
