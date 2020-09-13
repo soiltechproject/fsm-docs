@@ -6,7 +6,9 @@
 
 ---
 
-### Setup @shaz, can you please check that this is current
+### Setup 
+
+~@shaz, can you please check that this is current~
 
 To embed this project you need to include it in an SBT multi-project setup.
 
