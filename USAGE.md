@@ -6,6 +6,38 @@
 
 ---
 
+### Setup @shaz, can you please check that this is current
+
+To embed this project you need to include it in an SBT multi-project setup.
+
+* Copy/clone the source code under your project's root directory. We recommend place it under a **modules** folder on your root.
+* Add the sub-project in your **build.sbt** file
+
+```
+lazy val soiltech = project in file("modules/soiltech")
+val proj = (project in file(".")).dependsOn(soiltech)
+```
+
+* You may need to add the assembly plugin in your project. Add the below into your plugins.sbt
+
+```
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "x.x.x")
+```
+
+## Executing the tools
+
+You can call the processors in two ways. Using the built-in akka actors or directly calling the processors so you can control the flow and run it synchronous or asynchronous as you see fit.
+
+### Configuring the library
+
+As soon as your project loads call the below to configure the library.
+
+* Setup the temporary folder for all the library processing
+```Processor.setRootPath("/opt/farmlab/processing")```
+
+
+---
+
 ## Core Usage
 
 ### Step 1: Create Your Paddocks 
