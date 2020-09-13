@@ -298,6 +298,8 @@ Generator:
 ```scala
 /**
   * ImageGenerator
+  * Responsible for rasterising and colouring the original metrics as well as generating statistics for the dataset
+  * Async updates to individual paddocks are sent via @org.soiltech.Processor#statusReceiver
   * @param paddocks:Iterable[Paddock]
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
@@ -307,3 +309,23 @@ YLFGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:ImageGeneratorConfig)
 
 
 ### Processors
+
+#### DataProcessor
+
+#### SampleAlignProcessor
+
+#### KMeansProcessor
+
+#### CLHCProcessor
+
+#### PTFProcessor
+
+AWC
+
+#### SplineProcessor
+
+#### krigingProcessor
+
+#### RegressionProcessor
+
+#### QMProcessor
