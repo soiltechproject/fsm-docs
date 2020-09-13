@@ -13,14 +13,14 @@ To embed this project you need to include it in an SBT multi-project setup.
 * Copy/clone the source code under your project's root directory. We recommend place it under a **modules** folder on your root.
 * Add the sub-project in your **build.sbt** file
 
-```
+```sbt
 lazy val soiltech = project in file("modules/soiltech")
 val proj = (project in file(".")).dependsOn(soiltech)
 ```
 
 * You may need to add the assembly plugin in your project. Add the below into your plugins.sbt
 
-```
+```sbt
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "x.x.x")
 ```
 
