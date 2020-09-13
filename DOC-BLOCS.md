@@ -19,13 +19,15 @@
 case class GridInputFile(uid:String, metricType:String, file:URL, fileType:MetricFormat.Value, depth:Option[(Double,Double)] = None, isModel:Boolean = false, category:Option[String] = None)
 ```
 
+@shaz, should we include the dates in these?
+
 
 #### NDVIInputFile
 
 ```scala
 /**
   * NDVIInputFile - Special input that holds information for calculating the NDVI from the red and nir bands
-  * @param id:String
+  * @param id:String - identifier for the NDVIInputFile
   * @param red:GridInputFile - contains the red band data
   * @param nir:GridInputFile - contains the near infrared band data 
   * @param bounds:Polygon - The boundary of the paddock @shaz not sure if this is needed as the paddock object also takes bounds 
@@ -66,14 +68,14 @@ case class Result(attribute:String,value:Any,`type`:Option[String] = None, units
 
 ```scala
 /**
-  * PointDataset 
-  * @param 
-  * @param 
-  * @param 
-  * @param 
-  * @param 
-  * @param 
-  * @param 
+  * PointDataset - For holding information about a soil sample
+  * @param id:String - identifier for the PointDataset
+  * @param alignedGridValues:Option[Map[String,Double]] - The gridInput data that is closest to the PointDataset location. @shaz Should we make a formal method?
+  * @param attributes:Seq[PointAttribute] - Array of PointAttribute(s) that were measured from this sample
+  * @param location:Coordinate - @shaz should we change to (lat,lon) so we dont have to force the user to use import org.locationtech.jts.geom.Coordinate?
+  * @param depthFromTo:(Double,Double) - The depth range starting from shallower to deeper
+  * @param dateTaken:Date - The date that the sample was taken (java.util.Date)
+  * @param paddockId:Option[String] = None - @shaz Is this relevent as this will be inputs into the paddock object
   */
 case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]], attributes:Seq[PointAttribute], location:Coordinate, depthFromTo:(Double,Double), dateTaken:Date, paddockId:Option[String] = None)
 ```
