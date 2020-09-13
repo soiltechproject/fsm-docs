@@ -28,7 +28,7 @@ Some soil observations, by nature, come with a depth range and will be needed to
 ```scala
 val inputDir = Some(new File("path/to/input/dir"))
 val clayInput = new File(inputDir.get, "clay_10_30.tif").toURI.toURL
-val clayFile_10_30 = GridInputFile(uid=“clay_10_30”, metricType=“clay”, file=clayInput, fileType=MetricFormat.Tiff, depth=(10,30), isModel=true)
+val clayFile_10_30 = GridInputFile(uid=“clay”, metricType=“clay”, file=clayInput, fileType=MetricFormat.Tiff, depth=(10,30), isModel=true)
 ```
 
 Notice `isModel = true`. This is set to true if the input data is not directly measured. 
