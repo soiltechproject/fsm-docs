@@ -37,7 +37,7 @@ case class NDVIFile(id:String, red:MetricFile, nir:MetricFile, bounds:Polygon)
 
 ```scala
 /**
-  * Paddock - Used to hold information about the paddock and fit the input data to the bounds and gird. Used for inputs into the Soiltech generators
+  * Paddock - For holding information about the paddock and fit the input data to the bounds and gird. Used for inputs into the Soiltech generators
   * @param GridFiles:Iterable[GridInputFile] - Array of all the GridInputFile(s) for the paddock
   * @param bounds:Polygon - The boundary of the paddock
   * @param soilPointDataArray:Iterable[PointDataset] - Array of PointDataset within the paddock bounds
@@ -45,4 +45,19 @@ case class NDVIFile(id:String, red:MetricFile, nir:MetricFile, bounds:Polygon)
   * @param id:Optional[String] = None - Optional identifier 
   */
 case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPointDataArray:Iterable[PointDataset],ndviFile:Iterable[NDVIFile],  = List(); id:Optional[String] = None)
+```
+
+#### PointAtribute
+
+
+```scala
+/**
+  * PointAtribute - For holding information about a reading/ test sone to measure a particulat soil attribute  
+  * @param attribute:String - name of the soil attribute. Either number or string depending on result (eg soil colour: "brown", pH: 8.3)
+  * @param value:Any - associated value of the attribute
+  * @param `type`:Option[String] = None - either string or number. @shaz not sure, was this going to be static or dynamic?
+  * @param units:Option[String] = None - associated units of the value (eg %, mg/mol)
+  * @param other:Option[String] = None - other description that may have come with the result 
+  */
+case class Result(attribute:String,value:Any,`type`:Option[String] = None, units:Option[String] = None,other:Option[String] = None)
 ```
