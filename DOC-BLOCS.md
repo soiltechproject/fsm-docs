@@ -35,6 +35,38 @@ case class GridInputFile(uid:String, metricType:String, file:URL, fileType:Metri
 case class NDVIFile(id:String, red:MetricFile, nir:MetricFile, bounds:Polygon)
 ```
 
+
+#### Dataset
+
+@shaz this can be an output of the Paddock object (and input?) - need to discuss 
+
+```scala
+/**
+  * Dataset - 
+  * @param id:String - identifier for the Dataset
+  * @param status:String = ""
+  * @param zoneStats:List[ZoneStats] = List()
+  * @param layers:List[Layer] = List()
+  * @param files:List[File] = List()
+  * @param bounds:Envelope = null
+  * @param outline:Geometry = null
+  * @param covariantStats:List[CovariantStats] = List()
+  */
+  
+case class Dataset(id:String,
+             config:ProcessingConfig = null,
+                  status:String = "",
+                  //stats:List[Stats] = List(),
+                  zoneStats:List[ZoneStats] = List(),
+                  layers:List[Layer] = List(),
+                  files:List[File] = List(),
+                  bounds:Envelope = null,
+                  outline:Geometry = null,
+                  covariantStats:List[CovariantStats] = List()
+             )
+
+```
+
 #### Paddock
 
 ```scala
@@ -48,6 +80,10 @@ case class NDVIFile(id:String, red:MetricFile, nir:MetricFile, bounds:Polygon)
   */
 case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPointDataArray:Iterable[PointDataset],ndviFile:Iterable[NDVIFile],  = List(); id:Optional[String] = None)
 ```
+
+@shaz i noticed that the ds:Dataset input is missing from this one
+
+~Talk about the methosd ie Paddock.getDataAsRDD~
 
 #### PointAtribute
 
@@ -79,3 +115,39 @@ case class Result(attribute:String,value:Any,`type`:Option[String] = None, units
   */
 case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]], attributes:Seq[PointAttribute], location:Coordinate, depthFromTo:(Double,Double), dateTaken:Date, paddockId:Option[String] = None)
 ```
+
+#### SimpleLayer
+
+```scala
+
+/**
+  * SimpleLayer
+  * @param name:String
+  * @param type`:String
+  * @param meta:Option[JsObject] = None
+  * @param geom:Option[JsObject] = None
+  * @param file:Option[File] = None
+  * @param scale:Option[Range] = None
+  * @param depth:Option[(Double,Double)] = None
+  */
+case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, geom:Option[JsObject] = None, file:Option[File] = None, scale:Option[Range] = None, depth:Option[(Double,Double)] = None) extends Layer
+```
+
+#### ZoneLayer
+
+
+````scala
+/**
+  * ZoneLayer
+  * @param name:String
+  * @param file:File
+  * @param zoneStats:List[ZoneLayerStats]
+  * @param type`:String = "zone"
+  * @param extraFiles:Seq[File]=Seq()
+  */
+case class ZoneLayer(name:String, file:File, zoneStats:List[ZoneLayerStats],`type`:String = "zone", extraFiles:Seq[File]=Seq()) extends Layer
+```
+
+#### CompositeLayer 
+
+needs rethinking @shaz
