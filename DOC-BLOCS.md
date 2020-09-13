@@ -148,6 +148,7 @@ case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, 
 case class ZoneLayer(name:String, file:File, zoneStats:List[ZoneLayerStats],`type`:String = "zone", extraFiles:Seq[File]=Seq()) extends Layer
 ```
 
+
 #### CompositeLayer 
 
 needs rethinking @shaz
