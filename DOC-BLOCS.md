@@ -247,11 +247,63 @@ Generator:
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
   */
-DSMGenerator(paddocks:Iterable[Paddock],ds:Dataset, cfg:DSMGeneratorConfig)
+DSMGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:DSMGeneratorConfig)
 ```
 
 #### YLFGenerator
 
+Config:
+
+```scala
+/**
+  * YLFGeneratorConfig
+  * @param 
+  * @param 
+  * @param 
+  */
+case class YLFGeneratorConfig(yieldField:String,
+                             boundaryFields:List[String],
+                             degrees:Option[Int],
+                             filterMode:Option[String],
+                             filterAmount:Option[Double],
+                             subtractionField:Option[String],
+                             regressionConfig:Option[RegressionConfig]
+                            ) extends ProcessingConfig
+```
+
+Generator:
+
+```scala
+/**
+  * DSMGenerator
+  * @param paddocks:Iterable[Paddock]
+  * @param config:DSMGeneratorConfig
+  * @param ds:Dataset
+  */
+YLFGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:YLFGeneratorConfig)
+```
+
 #### ImageGenerator
+
+Config
+
+```scala
+
+// This is wherer @chris should have psrsets for generating image. also, png, jpg etc
+ImageGeneratorConfig()
+```
+
+Generator:
+
+```scala
+/**
+  * ImageGenerator
+  * @param paddocks:Iterable[Paddock]
+  * @param config:DSMGeneratorConfig
+  * @param ds:Dataset
+  */
+YLFGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:ImageGeneratorConfig)
+```
+
 
 ### Processors
