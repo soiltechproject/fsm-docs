@@ -32,7 +32,7 @@ case class GridInputFile(uid:String, metricType:String, file:URL, fileType:Metri
   * @param nir:GridInputFile - contains the near infrared band data 
   * @param bounds:Polygon - The boundary of the paddock @shaz not sure if this is needed as the paddock object also takes bounds 
   */
-case class NDVIFile(id:String, red:MetricFile, nir:MetricFile, bounds:Polygon)
+case class NDVIFile(id:String, red:GridInputFile, nir:GridInputFile, bounds:Polygon)
 ```
 
 
