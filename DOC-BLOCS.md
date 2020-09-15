@@ -36,24 +36,6 @@ case class NDVIFile(id:String, red:GridInputFile, nir:GridInputFile)
 ```
 
 
-#### Paddock
-
-```scala
-/**
-  * Paddock - For holding information about the paddock and fit the input data to the bounds and gird. Used for inputs into the Soiltech generators
-  * @param GridFiles:Iterable[GridInputFile] - Array of all the GridInputFile(s) for the paddock
-  * @param bounds:Polygon - The boundary of the paddock
-  * @param soilPointDataArray:Iterable[PointDataset] - Array of PointDataset within the paddock bounds
-  * @param ndviFile:Iterable[NDVIInputFile]=List() - Array of all the NDVIInputFile(s) for the paddock
-  * @param id:Optional[String] = None - Optional identifier 
-  */
-case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPointDataArray:Iterable[PointDataset],ndviFile:Iterable[NDVIFile],  = List(); id:Optional[String] = None)
-```
-
-@shaz i noticed that the ds:Dataset input is missing from this one
-
-~Talk about the method ie Paddock.getDataAsRDD~
-
 #### PointAtribute
 
 
@@ -85,22 +67,23 @@ case class Result(attribute:String,value:Any,`type`:Option[String] = None, units
 case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]], attributes:Seq[PointAttribute], location:Coordinate, depthFromTo:(Double,Double), dateTaken:Date, paddockId:Option[String] = None)
 ```
 
-#### SimpleLayer
+#### Paddock
 
 ```scala
-
 /**
-  * SimpleLayer
-  * @param name:String
-  * @param type`:String
-  * @param meta:Option[JsObject] = None
-  * @param geom:Option[JsObject] = None
-  * @param file:Option[File] = None
-  * @param scale:Option[Range] = None
-  * @param depth:Option[(Double,Double)] = None
+  * Paddock - For holding information about the paddock and fit the input data to the bounds and gird. Used for inputs into the Soiltech generators
+  * @param GridFiles:Iterable[GridInputFile] - Array of all the GridInputFile(s) for the paddock
+  * @param bounds:Polygon - The boundary of the paddock
+  * @param soilPointDataArray:Iterable[PointDataset] - Array of PointDataset within the paddock bounds
+  * @param ndviFile:Iterable[NDVIInputFile]=List() - Array of all the NDVIInputFile(s) for the paddock
+  * @param id:Optional[String] = None - Optional identifier 
   */
-case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, geom:Option[JsObject] = None, file:Option[File] = None, scale:Option[Range] = None, depth:Option[(Double,Double)] = None) extends Layer
+case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPointDataArray:Iterable[PointDataset],ndviFile:Iterable[NDVIFile],  = List(); id:Optional[String] = None)
 ```
+
+@shaz i noticed that the ds:Dataset input is missing from this one
+
+~Talk about the method ie Paddock.getDataAsRDD~
 
 ---
 
