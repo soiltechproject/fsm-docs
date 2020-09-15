@@ -273,14 +273,20 @@ case class YLFGeneratorConfig(yieldField:String,
 
 Generator:
 
+*WIP*
+
 ```scala
 /**
   * DSMGenerator
   * @param paddocks:Iterable[Paddock]
   * @param config:DSMGeneratorConfig
-  * @param ds:Dataset
   */
-YLFGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:YLFGeneratorConfig)
+YLFGenerator(paddocks:Iterable[Paddock]).buildYielfGap(config:YLFGeneratorConfig)
+  * @returns ds: YLFResult[RDD,trendline:Array[Array[]],Array[Array[]]]
+
+YLFGenerator(paddocks:Iterable[Paddock]).buildBLA(config:Array[YLFGeneratorConfig])
+  * @returns ds: (RDD[Map[(lat,,lon),]], Legend)
+
 ```
 
 #### ImageGenerator
@@ -304,7 +310,7 @@ Generator:
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
   */
-YLFGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:ImageGeneratorConfig)
+ImageGenerator(paddocks:Iterable[Paddock], config:ImageGeneratorConfig)
 ```
 
 
