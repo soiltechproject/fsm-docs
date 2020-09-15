@@ -123,12 +123,22 @@ Generator:
   * @param config:LocationGeneratorConfig
   * @param ds:Dataset
   */
-LocationGenerator(paddocks:Iterable[Paddock], config:KMeansConfig, ds:Dataset)
+LocationGenerator(paddocks:Iterable[Paddock])
+```
+
+Methods:
+
+```scala
+/**
+  * build
+  * @param 
+  */
+
 ```
 
 #### DSMGenerator
 
-Congig:
+Config:
 
 ```scala
 
@@ -174,10 +184,18 @@ Generator:
 /**
   * DSMGenerator
   * @param paddocks:Iterable[Paddock]
-  * @param config:DSMGeneratorConfig
-  * @param ds:Dataset
   */
-DSMGenerator(paddocks:Iterable[Paddock],ds:Dataset, config:DSMGeneratorConfig)
+DSMGenerator(paddocks:Iterable[Paddock])
+```
+
+Methods:
+
+```scala
+/**
+  * build
+  * @param config:DSMGeneratorConfig
+  */
+
 ```
 
 #### YLFGenerator
@@ -211,12 +229,22 @@ Generator:
   * @param paddocks:Iterable[Paddock]
   * @param config:DSMGeneratorConfig
   */
-YLFGenerator(paddocks:Iterable[Paddock]).buildYielfGap(config:YLFGeneratorConfig)
+YLFGenerator(paddocks:Iterable[Paddock])
+
+```
+
+Methods:
+
+```scala
+/**
+  * build
+  * @param 
   * @returns ds: YLFResult[RDD,trendline:Array[Array[]],Array[Array[]]]
+  */
+YLFGenerator(paddocks:Iterable[Paddock]).buildYielfGap(config:YLFGeneratorConfig)
 
 YLFGenerator(paddocks:Iterable[Paddock]).buildBLA(config:Array[YLFGeneratorConfig])
   * @returns ds: (RDD[Map[(lat,,lon),]], Legend)
-
 ```
 
 #### ImageGenerator
@@ -240,9 +268,18 @@ Generator:
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
   */
-ImageGenerator(paddocks:Iterable[Paddock], config:ImageGeneratorConfig)
+ImageGenerator(paddocks:Iterable[Paddock])
 ```
 
+Methods:
+
+```scala
+/**
+  * build
+  * @param config:DSMGeneratorConfig
+  */
+
+```
 
 ### Processors
 
