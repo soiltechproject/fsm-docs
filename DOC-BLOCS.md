@@ -238,7 +238,7 @@ Methods:
 ```scala
 /**
   * build
-  * @param 
+  * @param YLFGeneratorConfig
   * @returns ds: YLFResult[RDD,trendline:Array[Array[]],Array[Array[]]]
   */
 YLFGenerator(paddocks:Iterable[Paddock]).buildYielfGap(config:YLFGeneratorConfig)
@@ -276,7 +276,7 @@ Methods:
 ```scala
 /**
   * build
-  * @param config:DSMGeneratorConfig
+  * @param config:ImageGeneratorConfig
   */
 
 ```
