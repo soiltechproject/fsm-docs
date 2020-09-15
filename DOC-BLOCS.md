@@ -36,37 +36,6 @@ case class NDVIFile(id:String, red:GridInputFile, nir:GridInputFile)
 ```
 
 
-#### Dataset
-
-@shaz this can be an output of the Paddock object (and input?) - need to discuss 
-
-```scala
-/**
-  * Dataset - 
-  * @param id:String - identifier for the Dataset
-  * @param status:String = ""
-  * @param zoneStats:List[ZoneStats] = List()
-  * @param layers:List[Layer] = List()
-  * @param files:List[File] = List()
-  * @param bounds:Envelope = null
-  * @param outline:Geometry = null
-  * @param covariantStats:List[CovariantStats] = List()
-  */
-  
-case class Dataset(id:String,
-             config:ProcessingConfig = null,
-                  status:String = "",
-                  //stats:List[Stats] = List(),
-                  zoneStats:List[ZoneStats] = List(),
-                  layers:List[Layer] = List(),
-                  files:List[File] = List(),
-                  bounds:Envelope = null,
-                  outline:Geometry = null,
-                  covariantStats:List[CovariantStats] = List()
-             )
-
-```
-
 #### Paddock
 
 ```scala
@@ -83,7 +52,7 @@ case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPoin
 
 @shaz i noticed that the ds:Dataset input is missing from this one
 
-~Talk about the methosd ie Paddock.getDataAsRDD~
+~Talk about the method ie Paddock.getDataAsRDD~
 
 #### PointAtribute
 
@@ -133,28 +102,6 @@ case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]]
 case class SimpleLayer(name:String,`type`:String, meta:Option[JsObject] = None, geom:Option[JsObject] = None, file:Option[File] = None, scale:Option[Range] = None, depth:Option[(Double,Double)] = None) extends Layer
 ```
 
-#### ZoneLayer
-
-
-```scala
-/**
-  * ZoneLayer
-  * @param name:String
-  * @param file:File
-  * @param zoneStats:List[ZoneLayerStats]
-  * @param type`:String = "zone"
-  * @param extraFiles:Seq[File]=Seq()
-  */
-case class ZoneLayer(name:String, file:File, zoneStats:List[ZoneLayerStats],`type`:String = "zone", extraFiles:Seq[File]=Seq()) extends Layer
-
-```
-
-
-#### CompositeLayer 
-
-needs discussion @shaz
-
-
 ---
 
 ## Methods
@@ -163,9 +110,9 @@ needs discussion @shaz
 
 The generators are the methods that generate outputs. Depening on the user defined setting, the generators will produce the corrisponding outputs.
 
-Typically, generators take an Array of paddocks, a Dataset object and a config object.
+Typically, generators take an Array of paddocks in their constructor.
 
-The config object will define how the generator will run. Therefore before running a generator, the user needs to build a corisponding config object.
+The config object will define how the generator will run. Therefore, before running a generator, the user needs to build a corisponding config object.
 
 #### LocationGenerator
 
