@@ -254,17 +254,23 @@ Config
 ```scala
 
 // EG defaults for AWC
-attribute = "AWC"
+input = "AWC"
 colorGradient = gradient.awc
 nSegments = 6 // if set to 0 output the continious
 range = (5, 60)
 
-LinearImageConfig(attribute, colorGradient, nSections = 7, range)
+LinearImageConfig(input, colorGradient, nSections = 7, range)
 
 input = "YLF"
 palette = palette.ylf(clay = "clay", awc = "AWC", ph = "pH")
 
 CatorigoricalImageConfig(input, palette)
+
+input = "U%"
+symbolPack = symbolPacks.confidence
+inverted = true
+
+SymbolImageConfig(input, symbolPack, inverted)
 
 
 
