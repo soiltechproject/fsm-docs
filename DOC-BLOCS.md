@@ -273,6 +273,17 @@ inverted = true
 SymbolImageConfig(input, symbolPack, inverted)
 
 
+clay = "clay"
+sand = "sand"
+textureClass = textureClass.
+clayColorGradient = gradient.textureClay
+sandColorGradient = gradient.textureSand
+siltColorGradient = gradient.textureSilt
+
+
+CatogoricalImageConfig(clay, sand, silt, clayColorGradient, sandColorGradient, siltColorGradient, textureClass, colorGradient)
+
+
 
 // This is wherer @chris should have psrsets for generating image. also, png, jpg etc
 ImageGeneratorConfig(Iterable[ImageConfig])
