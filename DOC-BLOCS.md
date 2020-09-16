@@ -253,8 +253,23 @@ Config
 
 ```scala
 
+// EG defaults for AWC
+attribute = "AWC"
+colorGradient = gradient.awc
+nSegments = 6 // if set to 0 output the continious
+range = (5, 60)
+
+LinearImageConfig(attribute, colorGradient, nSections = 7, range)
+
+input = "YLF"
+palette = palette.ylf(clay = "clay", awc = "AWC", ph = "pH")
+
+CatorigoricalImageConfig(input, palette)
+
+
+
 // This is wherer @chris should have psrsets for generating image. also, png, jpg etc
-ImageGeneratorConfig()
+ImageGeneratorConfig(Iterable[ImageConfig])
 ```
 
 Generator:
@@ -268,7 +283,7 @@ Generator:
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
   */
-ImageGenerator(paddocks:Iterable[Paddock])
+ImageGenerator(paddocks:Iterable[Iterable[Paddock]])
 ```
 
 Methods:
