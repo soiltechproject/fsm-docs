@@ -323,6 +323,30 @@ Methods:
 
 #### CLHCProcessor
 
+In python:
+
+```python
+def CLHCProcessor(clhcInputRDD: RDD, 
+                numSamples: int, 
+                existingSamples: SamplesList = [], 
+                numIterations: int = 10, 
+                excludeLocations: SamplesList = []) -> Tuple[float,List[Dict[str,float]],List[Dict[str,float]]]:
+    """
+    Recommends sample locations via the clhc method
+    
+    Attributes:
+        clhcInputRDD -- RDD[Tuple[Tuple[float,float], Dict[str,float]]]
+        numSamples -- The number of sample locations to genrate
+        existingSamples -- List[Tuple[float,float]] a list of existing soil sample locations
+        numIterations -- Number of times to iterate
+        excludeLocations -- List[Tuple[LAT,LON]] Locations to exclure (not to choose)
+
+    Returns:
+        a list of lat, lon locations: List[Tuple[float, float]]
+    """
+
+```
+
 #### PTFProcessor
 
 AWC
