@@ -321,6 +321,10 @@ Methods:
 
 #### KMeansProcessor
 
+```python
+def KMeansProcessor(kMeansInputRDD: RDD, numClusters: int):
+```
+
 #### CLHCProcessor
 
 In python:
