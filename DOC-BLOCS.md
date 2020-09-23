@@ -364,6 +364,15 @@ PTFProcessor(ptf = AvailablePTFs.AWC, clay = 80, sand = 5, cec = 35.6, bd = 1)
 
 #### SplineProcessor
 
+```python
+
+DepthValues = List[Tuple[Tuple[float,float],float]]
+
+
+def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: int):
+
+```
+
 #### krigingProcessor
 
 #### RegressionProcessor
