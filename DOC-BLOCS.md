@@ -85,6 +85,22 @@ case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPoin
 
 ~Talk about the method ie Paddock.getDataAsRDD~
 
+### BuildResult and PaddockBuildResults
+
+```scala
+case class BuildResult(name:String,
+                       depth:Option[(Double,Double)],
+                       data:RDD[PointFeature[Double]],
+                       histogram:Option[Histogram[Double]],
+                       isModeled:Boolean = false,
+                       category:Option[String] = None,
+                       group:Option[String] = None
+                      ) extends AbsBuildResult[PointFeature[Double]]
+
+
+case class PaddockBuildResults(paddockId:String,results:Iterable[BuildResult])
+```
+
 ---
 
 ## Methods
