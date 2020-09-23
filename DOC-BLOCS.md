@@ -377,4 +377,19 @@ def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: 
 
 #### RegressionProcessor
 
-#### QMProcessor
+#### MixProcessor
+
+```python
+def MixProcessor(mixInputRDD: RDD, baseLayer: str, additionalLater: str, newLater: str, matchRange: bool = False):
+    """
+    For mixing layers
+
+    Attributes:
+        mixInputRDD: RDD[Dict[str,float]] - input RDD with baseLayer and additionalLater
+        baseLayer: str - name if the base layer
+        additionalLater: str - name if the additional layer
+        matchRange: bool - if True adjusts the range of the additionalLater to fit the range of the baseLayer
+    Returns:
+        RDD[Dict[str,float]] - same as input RDD with an additional layer with name newLayer
+    """
+```
