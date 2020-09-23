@@ -323,6 +323,15 @@ Methods:
 
 ```python
 def KMeansProcessor(kMeansInputRDD: RDD, numClusters: int):
+    """
+    For creating adn allocating Zones
+
+    Attributes:
+        kMeansInputRDD: RDD[Dict[str,float]] - will exclude lat, lon if included
+        numClusters: int - The number of Zones/clusters to make
+    Returns: 
+        RDD[Dict[str,float]] with one column being the allocated zone
+    """
 ```
 
 #### CLHCProcessor
@@ -354,7 +363,16 @@ def CLHCProcessor(clhcInputRDD: RDD,
 #### PTFProcessor
 
 ```python
-def PTFProcessor(ptf, **kwargs):
+def PTFProcessor(ptf: AvailablePTFs.PTF, **kwargs) -> float:
+    """
+    Calculates a new soil attribute based on existing soil attrubutes via Pedotransfer Functions (ptf).
+
+    Attributes:
+        ptf: AvailablePTFs.PTF - the Pedotransfer Functions to use.
+        *kwargs: for assigning the input values. ie clay = 25.5
+    Returns:
+        float or None - the calculated value from the chosen ptf or None if it cant be calculated
+    """
 
 
 # eg:
@@ -368,8 +386,18 @@ PTFProcessor(ptf = AvailablePTFs.AWC, clay = 80, sand = 5, cec = 35.6, bd = 1)
 
 DepthValues = List[Tuple[Tuple[float,float],float]]
 
+def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: int) -> float:
+    """
+        Based on a set of samples with adjacent depth ranges, a predicted value may be
+        calculated when a new desired depth range is given
 
-def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: int):
+    Attributes:
+        depth_value_list: List[Tuple[Tuple[float,float],float]] - the input list in the form [((upper,lower),value)), ...]
+        upperDepth: int - the upper/shallower/smaller depth of the depth range
+        lowerDepth: int - the lower/deeper/larger depth of the depth range
+    Returns:
+        float -  the calculated value for the new depth range
+    """
 
 ```
 
