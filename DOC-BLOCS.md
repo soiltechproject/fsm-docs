@@ -273,9 +273,12 @@ Config:
 ```scala
 /**
   * YLFConfig
-  * @param 
-  * @param 
-  * @param 
+  * @param boundaryFields:List[String]
+  * @param degrees:Option[Int]
+  * @param filterMode:Option[String]
+  * @param filterAmount:Option[Double]
+  * @param subtractionField:Option[String]
+  * @param regressionConfig:Option[RegressionConfig]
   */
 case class YLFConfig(yieldField:String,
                              boundaryFields:List[String],
@@ -295,7 +298,6 @@ Generator:
 /**
   * DSMGenerator
   * @param paddocks:Iterable[Paddock]
-  * @param config:DSMGeneratorConfig
   */
 YLFGenerator(paddocks:Iterable[Paddock]).build(YLFConfig)
 
