@@ -362,9 +362,11 @@ ImageGenerator(PaddockBuildResults).build(ImageConfig)
 
 ### Processors
 
+In python for now (WIP).
+
 #### DataProcessor
 
-In python for now (WIP).
+![image](DataAlign.png)
 
 ```python
 def DataProcessor(rawInputRDD: RDD, bounds) -> List[Dict[[str,float]]]:
@@ -382,7 +384,6 @@ def DataProcessor(rawInputRDD: RDD, bounds) -> List[Dict[[str,float]]]:
 
 #### SampleAlignProcessor
 
-
 ```python
 def SampleAlignProcessor(inputRDD: RDD, sampleData: List[Dict[str,float]]) -> List[Dict[[str,float]]]:
     """
@@ -397,6 +398,9 @@ def SampleAlignProcessor(inputRDD: RDD, sampleData: List[Dict[str,float]]) -> Li
 ```
 
 #### KMeansProcessor
+
+
+![image](kMeans.png)
 
 ```python
 def KMeansProcessor(kMeansInputRDD: RDD, numClusters: int):
@@ -413,7 +417,8 @@ def KMeansProcessor(kMeansInputRDD: RDD, numClusters: int):
 
 #### CLHCProcessor
 
-In python:
+
+![image](clhc.png)
 
 ```python
 def CLHCProcessor(clhcInputRDD: RDD, 
@@ -480,6 +485,8 @@ def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: 
 
 #### KrigingProcessor
 
+![image](kriging.png)
+
 ```python
 def KrigingProcessor(inputRDD: RDD, pointData: List[Dict[str,float]], method: str) -> RDD:
     """
@@ -540,3 +547,7 @@ def BLAProcessor(inputRDD: RDD, yCol: str) -> Dict[str,BoundaryLine]:
         Dict[str,BoundaryLine] - A dict of the boundary lines for each supplied attribute
     """
 ```
+
+#### SegmentationProcessor
+
+![image](segmentation.png)
