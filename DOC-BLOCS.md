@@ -184,12 +184,12 @@ Config:
 
 ```scala
 /**
-  * SampleLocationConfig - 
+  * SampleLocationConfig - For finding optimal locations to take soil samples
   * @param zones number of KMeans zones to created
   * @param metrics set of the metrics (Dimensions) used in this process
   * @param subSample When set perform a stratified sub sampling on each of the zones
   */
-case class SampleLocationGenerator(zones:Int,metrics:Seq[KMeansMetricConfig],subSample:Option[LHCConfig] = None,outputTiff:Boolean = false) 
+case class SampleLocationGenerator(zones:Int,metrics:Seq[KMeansMetricConfig],subSample:Option[LHCConfig] = None) 
 ```
 
 Generator:
@@ -198,8 +198,6 @@ Generator:
 /**
   * SampleLocationGenerator
   * @param paddocks:Iterable[Paddock]
-  * @param config:LocationGeneratorConfig
-  * @param ds:Dataset
   */
 SampleLocationGenerator(paddocks:Iterable[Paddock]).build(SampleLocationConfig)
 ```
@@ -211,10 +209,21 @@ Config:
 ```scala
 
 /**
-  * SoilMapConfig
-  * @param 
-  * @param 
-  * @param 
+  * SoilMapConfig - For creating new Farm Soil Maps
+  * @param sampleField:String - the soil attrubute to project results
+  * @param samples:Option[Seq[SamplePoint]] - The soil samples
+  * @param depths:List[(Double,Double)] - the depth range to project across
+  * @param metrics:List[String] - @shaz
+  * @param includeLatLong:Option[Boolean] - if true, will include lats and lons int the regression model
+  * @param includePaddockId:Option[Boolean] - if true, @shaz
+  * @param clipRange:Option[(Double,Double)] - set the max and min of the projected results, clips if outside
+  * @param filterExtremeValues:Option[Boolean] - if true, will filter extreme values
+  * @param mixRatio:Double = 0.5 - the ratio to mix the additional soil attribute
+  * @param mixMetric:Option[String] - the additional soil attribute
+  * @param krigMethod:Option[String] - krig method
+  * @param splineDepths:Option[List[(Double,Double)]] - @shaz
+  * @param groupNearPaddocks:Option[Boolean] - will group paddocks that are close to each other to krig across
+  * @param sumProfile:Option[Boolean] - will calculate to total sum of the profile from the SamplePoint(s)
   */
 case class SoilMapConfig(sampleField:String,
                             samples:Option[Seq[SamplePoint]],
