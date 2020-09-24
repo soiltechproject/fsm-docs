@@ -333,6 +333,21 @@ Methods:
 
 #### DataProcessor
 
+
+```python
+def DataProcessor(rawInputRDD: RDD, bounds) -> List[Dict[[str,float]]]:
+    """
+    Takes a grid that is larger then the bounds and interpolates to a grid (aprox 5m)
+    for the regoin inside the bounds.
+    
+    Attribures:
+        rawInputRDD: RDD[Dict[str,float]] - Must be in the form RDD[{'lat': 130.5, 'lon':-30.5, value: v}]
+        bounds - the boundary to cookie cut the rawInputRDD
+    Returns: 
+        RDD[Dict[[str,float]]] - with lat, lon as per the soiltech coord system amd inside the bounds
+    """
+```
+
 #### SampleAlignProcessor
 
 
@@ -466,5 +481,20 @@ def MixProcessor(mixInputRDD: RDD, baseLayer: str, additionalLater: str, newLate
         matchRange: bool - if True adjusts the range of the additionalLater to fit the range of the baseLayer
     Returns:
         RDD[Dict[str,float]] - same as input RDD with an additional layer with name newLayer
+    """
+```
+
+#### BLAProcessor
+
+```python
+def BLAProcessor(inputRDD: RDD, yCol: str) -> Dict[str,BoundaryLine]:
+    """
+    Finds the boundary lines for a set of attributes in inputRDD
+    
+    Attributes:
+        inputRDD: RDD[Dict[str,float]]
+        yCol: str - mist be a key of inputRDD
+    Returns:
+        Dict[str,BoundaryLine] - A dict of the boundary lines for each supplied attribute
     """
 ```
