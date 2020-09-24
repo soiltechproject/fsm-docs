@@ -12,7 +12,13 @@
 - PaddockBuildResults
 
 ### Generator Configs
+Main Configs:
+- SmapleLocationConfig
+- SoilMapConfig
+- SmapleLocationConfig
 - ImageConfig
+
+Sub Configs:
 - AWCConfig
 - KMeansConfig
 - KMeansMetricConfig
@@ -122,13 +128,18 @@ case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]]
 case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPointDataArray:Iterable[PointDataset],ndviFile:Iterable[NDVIFile],  = List(); id:Optional[String] = None)
 ```
 
-@shaz i noticed that the ds:Dataset input is missing from this one
-
-~Talk about the method ie Paddock.getDataAsRDD~
-
-### BuildResult and PaddockBuildResults
+### BuildResult
 
 ```scala
+/**
+  * BuildResult - For holding information related to the input file 
+  * @param name:String
+  * @param depth:Option[(Double,Double)] = None - Use if the input has a depth range (eg clay 10 to 30 cm)
+  * @param data:RDD[PointFeature[Double]] - The
+  * @param histogram:Option[Histogram[Double]]
+  * @param isModel:Boolean = false - Use if the input is maddled and not meadured directly. @shaz perhaps this should be changed to isIndirect, or something
+  * @param category:Option[String] = None 
+  */
 case class BuildResult(name:String,
                        depth:Option[(Double,Double)],
                        data:RDD[PointFeature[Double]],
@@ -137,8 +148,17 @@ case class BuildResult(name:String,
                        category:Option[String] = None,
                        group:Option[String] = None
                       ) extends AbsBuildResult[PointFeature[Double]]
+```
 
+### PaddockBuildResults
 
+```scala
+
+/**
+  * PaddockBuildResults - For holding information related to the input file 
+  * @param paddockId:String - The id of the paddock
+  * @param results:Iterable[BuildResult] - a list of BuildResult(s)
+  */
 case class PaddockBuildResults(paddockId:String,results:Iterable[BuildResult])
 ```
 
@@ -146,17 +166,17 @@ case class PaddockBuildResults(paddockId:String,results:Iterable[BuildResult])
 
 ## Methods
 
-### Generators
+### Generators and Configs
 
-The generators are the methods that generate outputs. Depening on the user defined setting, the generators will produce the corrisponding outputs.
+The generators are the methods that generate **PaddockBuildResults**. Depening on the user defined setting, the generators will produce the corrisponding **PaddockBuildResults**.
 
 Typically, generators take an Array of paddocks in their constructor.
 
-The config object will define how the generator will run. Therefore, before running a generator, the user needs to build a corisponding config object.
+The **Config** object will define how the generator will run. Therefore, before running a generator, the user needs to build a corisponding config object.
+
+The generator will run using the .**run()** or **.build()** method.
 
 #### SampleLocationGenerator
-
-~Needs a bit of a refactor~
 
 Config:
 
