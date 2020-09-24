@@ -446,22 +446,32 @@ def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: 
 
 ```
 
-#### krigingProcessor
+#### KrigingProcessor
 
 ```python
-# TODO
+def KrigingProcessor(inputRDD: RDD, pointData: List[Dict[str,float]], method: str) -> RDD:
+    """
+    Uses kriging to interpolate attributes from pointData for each point in inputRDD
+
+    Attributes:
+        inputRDD: RDD[Dict[str,float]]
+        pointData: List[Dict[[str,float]]]
+        method: str - the kriging method
+    Returns:
+        RDD[Dict[str,float]] - same as inputRDD but with the new columns found in pointData
+    """
 ```
 
 #### RegressionProcessor
 
 ```python
-def RegressionProcessor(inputRDD: RDD, trainingData: List[Dict[[str,float]]]) -> RDD:
+def RegressionProcessor(inputRDD: RDD, trainingData: List[Dict[str,float]]) -> RDD:
     """
     Creates a multivariate linear regression model and makes predictions from the inputRDD
 
     Attributes:
         inputRDD: RDD[Dict[str,float]]
-        trainingData: List[Dict[[str,float]]]
+        trainingData: List[Dict[str,float]]
     Returns:
         RDD[Dict[str,float]] - same as inputRDD but with the new columns found in trainingData
     """
