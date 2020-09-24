@@ -1,5 +1,46 @@
 # Soiltech objects and methods (with doc blocs)
 
+## Summary
+
+### Objects
+- GridInputFile
+- NDVIInputFile
+- PointAtribute
+- PointDataset
+- Paddock
+- BuildResult
+- PaddockBuildResults
+
+### Generator Configs
+- ImageConfig
+- AWCConfig
+- KMeansConfig
+- KMeansMetricConfig
+- LHCConfig
+- RegressionConfig
+- BoundaryLineConfig
+- YieldGapCfgConfig
+
+
+### Generators
+- SampleLocationGenerator
+- SoilMapGenerator
+- YLFGenerator
+- ImageGenerator
+
+
+### Processors
+- DataProcessor
+- SampleAlignProcessor
+- KMeansProcessor
+- CLHCProcessor
+- PTFProcessor
+- SplineProcessor
+- KrigingProcessor
+- RegressionProcessor
+- MixProcessor
+- BLAProcessor
+
 ## Objects
 
 #### GridInputFile
@@ -115,7 +156,6 @@ The config object will define how the generator will run. Therefore, before runn
 
 #### SampleLocationGenerator
 
-
 ~Needs a bit of a refactor~
 
 Config:
@@ -152,7 +192,7 @@ Methods:
 
 ```
 
-#### DSMGenerator
+#### SoilMapGenerator
 
 Config:
 
@@ -164,7 +204,7 @@ Config:
   * @param 
   * @param 
   */
-case class DSMGeneratorConfig (sampleField:String,
+case class SoilMapGenerator(sampleField:String,
                             samples:Option[Seq[SamplePoint]],
                             depths:List[(Double,Double)],
                             metrics:List[String],
@@ -198,10 +238,10 @@ Generator:
 
 ```scala
 /**
-  * DSMGenerator
+  * SoilMapGenerator
   * @param paddocks:Iterable[Paddock]
   */
-DSMGenerator(paddocks:Iterable[Paddock])
+SoilMapGenerator(paddocks:Iterable[Paddock])
 ```
 
 Methods:
