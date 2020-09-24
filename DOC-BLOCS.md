@@ -15,25 +15,27 @@
 Main Configs:
 - SmapleLocationConfig
 - SoilMapConfig
-- SmapleLocationConfig
+- YLFConfig
 - ImageConfig
 
 Sub Configs:
-- AWCConfig
 - KMeansConfig
 - KMeansMetricConfig
 - LHCConfig
+
+
+- KrigingConfig
 - RegressionConfig
+- AWCConfig
+
 - BoundaryLineConfig
 - YieldGapCfgConfig
-
 
 ### Generators
 - SampleLocationGenerator
 - SoilMapGenerator
 - YLFGenerator
 - ImageGenerator
-
 
 ### Processors
 - DataProcessor
@@ -199,17 +201,7 @@ Generator:
   * @param config:LocationGeneratorConfig
   * @param ds:Dataset
   */
-SampleLocationGenerator(paddocks:Iterable[Paddock])
-```
-
-Methods:
-
-```scala
-/**
-  * build
-  * @param 
-  */
-
+SampleLocationGenerator(paddocks:Iterable[Paddock]).build(SampleLocationConfig)
 ```
 
 #### SoilMapGenerator
@@ -219,12 +211,12 @@ Config:
 ```scala
 
 /**
-  * DSMGeneratorConfig
+  * SoilMapConfig
   * @param 
   * @param 
   * @param 
   */
-case class SoilMapGenerator(sampleField:String,
+case class SoilMapConfig(sampleField:String,
                             samples:Option[Seq[SamplePoint]],
                             depths:List[(Double,Double)],
                             metrics:List[String],
@@ -261,18 +253,9 @@ Generator:
   * SoilMapGenerator
   * @param paddocks:Iterable[Paddock]
   */
-SoilMapGenerator(paddocks:Iterable[Paddock])
+SoilMapGenerator(paddocks:Iterable[Paddock]).build(SoilMapConfig)
 ```
 
-Methods:
-
-```scala
-/**
-  * build
-  * @param config:DSMGeneratorConfig
-  */
-
-```
 
 #### YLFGenerator
 
@@ -280,12 +263,12 @@ Config:
 
 ```scala
 /**
-  * YLFGeneratorConfig
+  * YLFConfig
   * @param 
   * @param 
   * @param 
   */
-case class YLFGeneratorConfig(yieldField:String,
+case class YLFConfig(yieldField:String,
                              boundaryFields:List[String],
                              degrees:Option[Int],
                              filterMode:Option[String],
@@ -305,27 +288,14 @@ Generator:
   * @param paddocks:Iterable[Paddock]
   * @param config:DSMGeneratorConfig
   */
-YLFGenerator(paddocks:Iterable[Paddock])
+YLFGenerator(paddocks:Iterable[Paddock]).build(YLFConfig)
 
 ```
 
-Methods:
-
-```scala
-/**
-  * build
-  * @param YLFGeneratorConfig
-  * @returns ds: YLFResult[RDD,trendline:Array[Array[]],Array[Array[]]]
-  */
-YLFGenerator(paddocks:Iterable[Paddock]).buildYielfGap(config:YLFGeneratorConfig)
-
-YLFGenerator(paddocks:Iterable[Paddock]).buildBLA(config:Array[YLFGeneratorConfig])
-  * @returns ds: (RDD[Map[(lat,,lon),]], Legend)
-```
 
 #### ImageGenerator
 
-Config
+Config:
 
 ```scala
 
@@ -361,8 +331,7 @@ CatogoricalImageConfig(clay, sand, silt, clayColorGradient, sandColorGradient, s
 
 
 
-// This is wherer @chris should have psrsets for generating image. also, png, jpg etc
-ImageGeneratorConfig(Iterable[ImageConfig])
+ImageConfig(buildResultNames:Set[String], format:String = "png")
 ```
 
 Generator:
@@ -376,23 +345,15 @@ Generator:
   * @param config:DSMGeneratorConfig
   * @param ds:Dataset
   */
-ImageGenerator(paddocks:Iterable[Iterable[Paddock]])
+ImageGenerator(PaddockBuildResults).build(ImageConfig)
 ```
 
-Methods:
-
-```scala
-/**
-  * build
-  * @param config:ImageGeneratorConfig
-  */
-
-```
 
 ### Processors
 
 #### DataProcessor
 
+In python for now (WIP).
 
 ```python
 def DataProcessor(rawInputRDD: RDD, bounds) -> List[Dict[[str,float]]]:
