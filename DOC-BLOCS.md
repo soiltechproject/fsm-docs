@@ -335,6 +335,20 @@ Methods:
 
 #### SampleAlignProcessor
 
+
+```
+def SampleAlignProcessor(inputRDD: RDD, sampleData: List[Dict[str,float]]) -> List[Dict[[str,float]]]:
+    """
+    Aligns sample data to points in the grid if inputRDD
+    
+    Attribures:
+        inputRDD: RDD[Dict[str,float]] - the grid input data as RDD. Must have 'lat', 'lon' and keys.
+        sampleData: List[Dict[str,float]] - the sample data. Must have 'lat', 'lon' and keys.
+    Returns: 
+        List[Dict[[str,float]]] - using lat, lon from the inputRDD and including all other data from both
+    """
+```
+
 #### KMeansProcessor
 
 ```python
@@ -419,7 +433,24 @@ def SplineProcessor(depth_value_list: DepthValues, upperDepth: int, lowerDepth: 
 
 #### krigingProcessor
 
+```python
+# TODO
+```
+
 #### RegressionProcessor
+
+```python
+def RegressionProcessor(inputRDD: RDD, trainingData: List[Dict[[str,float]]]) -> RDD:
+    """
+    Creates a multivariate linear regression model and makes predictions from the inputRDD
+
+    Attributes:
+        inputRDD: RDD[Dict[str,float]]
+        trainingData: List[Dict[[str,float]]]
+    Returns:
+        RDD[Dict[str,float]] - same as inputRDD but with the new columns found in trainingData
+    """
+```
 
 #### MixProcessor
 
