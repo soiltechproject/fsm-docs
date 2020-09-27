@@ -67,7 +67,7 @@ val clayFile_10_30 = GridInputFile(uid=“clay”, metricType=“clay”, file=c
 
 Notice `isModel = true`. This is set to true if the input data is not directly measured. 
 
-We've also included an `NDVIInputfile` for you to help group the data that is needed (*nir* and *red*) to calculate the *ndvi*. Create your *nir* and *red* GridInputFile's as you did above then:
+We've also included an `NDVIInputFile` for you to help group the data that is needed (*nir* and *red*) to calculate the *ndvi*. Create your *nir* and *red* GridInputFile's as you did above then:
 
 ```scala
 import org.geotools.geojson.geom.GeometryJSON

@@ -5,7 +5,7 @@
 ### Objects
 - GridInputFile
 - NDVIInputFile
-- PointAtribute
+- PointAttribute
 - PointDataset
 - Paddock
 - BuildResult
@@ -13,7 +13,7 @@
 
 ### Generator Configs
 Main Configs:
-- SmapleLocationConfig
+- SampleLocationConfig
 - SoilMapConfig
 - YLFConfig
 - ImageConfig
@@ -57,11 +57,11 @@ Sub Configs:
 /**
   * GridInputFile - For holding information related to the input file 
   * @param uid:String - A unique identifier 
-  * @param metricType:String - The property that has been maeured
+  * @param metricType:String - The property that has been measured
   * @param file:URL - the location of the file
   * @param fileType:MetricFormat.Value - can be Tiff, NetCDF or GDAL_VRT. eg use MetricFormat.Tiff
   * @param depth:Option[(Double,Double)] = None - Use if the input has a depth range (eg clay 10 to 30 cm)
-  * @param isModel:Boolean = false - Use if the input is maddled and not meadured directly. @shaz perhaps this should be changed to isIndirect, or something
+  * @param isModel:Boolean = false - Use if the input is modeled and not measured directly. @shaz perhaps this should be changed to isIndirect, or something
   * @param category:Option[String] = None - @shaz, not sure
   */
 
@@ -90,7 +90,7 @@ case class NDVIFile(id:String, red:GridInputFile, nir:GridInputFile)
 
 ```scala
 /**
-  * PointAtribute - For holding information about a reading/ test sone to measure a particulat soil attribute  
+  * PointAttribute - For holding information about a reading/test on a particular soil attribute  
   * @param attribute:String - name of the soil attribute. Either number or string depending on result (eg soil colour: "brown", pH: 8.3)
   * @param value:Any - associated value of the attribute
   * @param `type`:Option[String] = None - either string or number. @shaz not sure, was this going to be static or dynamic?
@@ -108,10 +108,10 @@ case class Result(attribute:String,value:Any,`type`:Option[String] = None, units
   * @param id:String - identifier for the PointDataset
   * @param alignedGridValues:Option[Map[String,Double]] - The gridInput data that is closest to the PointDataset location. @shaz Should we make a formal method?
   * @param attributes:Seq[PointAttribute] - Array of PointAttribute(s) that were measured from this sample
-  * @param location:Coordinate - @shaz should we change to (lat,lon) so we dont have to force the user to use import org.locationtech.jts.geom.Coordinate?
+  * @param location:Coordinate - @shaz should we change to (lat,lon) so we don't have to force the user to use import org.locationtech.jts.geom.Coordinate?
   * @param depthFromTo:(Double,Double) - The depth range starting from shallower to deeper
   * @param dateTaken:Date - The date that the sample was taken (java.util.Date)
-  * @param paddockId:Option[String] = None - @shaz Is this relevent as this will be inputs into the paddock object
+  * @param paddockId:Option[String] = None - @shaz Is this relevant as this will be inputs into the paddock object
   */
 case class PointDataset(id:String,  alignedGridValues:Option[Map[String,Double]], attributes:Seq[PointAttribute], location:Coordinate, depthFromTo:(Double,Double), dateTaken:Date, paddockId:Option[String] = None)
 ```
@@ -139,7 +139,7 @@ case class Paddock(otherGridFiles:Iterable[MetricFile], bounds:Polygon, soilPoin
   * @param depth:Option[(Double,Double)] = None - Use if the input has a depth range (eg clay 10 to 30 cm)
   * @param data:RDD[PointFeature[Double]] - The
   * @param histogram:Option[Histogram[Double]]
-  * @param isModel:Boolean = false - Use if the input is maddled and not meadured directly. @shaz perhaps this should be changed to isIndirect, or something
+  * @param isModel:Boolean = false - Use if the input is modeled and not measured directly. @shaz perhaps this should be changed to isIndirect, or something
   * @param category:Option[String] = None 
   */
 case class BuildResult(name:String,
@@ -170,11 +170,11 @@ case class PaddockBuildResults(paddockId:String,results:Iterable[BuildResult])
 
 ### Generators and Configs
 
-The generators are the methods that generate **PaddockBuildResults**. Depening on the user defined setting, the generators will produce the corrisponding **PaddockBuildResults**.
+The generators are the methods that generate **PaddockBuildResults**. Depending on the user defined setting, the generators will produce the corresponding **PaddockBuildResults**.
 
 Typically, generators take an Array of paddocks in their constructor.
 
-The **Config** object will define how the generator will run. Therefore, before running a generator, the user needs to build a corisponding config object.
+The **Config** object will define how the generator will run. Therefore, before running a generator, the user needs to build a corresponding config object.
 
 The generator will run using the .**run()** or **.build()** method.
 
@@ -210,7 +210,7 @@ Config:
 
 /**
   * SoilMapConfig - For creating new Farm Soil Maps
-  * @param sampleField:String - the soil attrubute to project results
+  * @param sampleField:String - the soil attribute to project results
   * @param samples:Option[Seq[SamplePoint]] - The soil samples
   * @param depths:List[(Double,Double)] - the depth range to project across
   * @param metrics:List[String] - @shaz
@@ -246,7 +246,7 @@ case class SoilMapConfig(sampleField:String,
                             mixRatio:Double = 0.5,
                             mixMetric:Option[String],
 
-                           // krigin method (advanced)
+                           // kriging method (advanced)
                             krigMethod:Option[String],
                            // depths to project results to
                             splineDepths:Option[List[(Double,Double)]],
@@ -313,7 +313,7 @@ Config:
 // EG defaults for AWC
 input = "AWC"
 colorGradient = gradient.awc
-nSegments = 6 // if set to 0 output the continious
+nSegments = 6 // if set to 0 output the continuous
 range = (5, 60)
 
 LinearImageConfig(input, colorGradient, nSections = 7, range)
@@ -321,7 +321,7 @@ LinearImageConfig(input, colorGradient, nSections = 7, range)
 input = "YLF"
 palette = palette.ylf(clay = "clay", awc = "AWC", ph = "pH")
 
-CatorigoricalImageConfig(input, palette)
+CategoricalImageConfig(input, palette)
 
 input = "U%"
 symbolPack = symbolPacks.confidence
@@ -338,7 +338,7 @@ sandColorGradient = gradient.textureSand
 siltColorGradient = gradient.textureSilt
 
 
-CatogoricalImageConfig(clay, sand, silt, clayColorGradient, sandColorGradient, siltColorGradient, textureClass, colorGradient)
+CategoricalImageConfig(clay, sand, silt, clayColorGradient, sandColorGradient, siltColorGradient, textureClass, colorGradient)
 
 
 
@@ -374,11 +374,11 @@ def DataProcessor(rawInputRDD: RDD, bounds) -> List[Dict[[str,float]]]:
     Takes a grid that is larger then the bounds and interpolates to a grid (aprox 5m)
     for the regoin inside the bounds.
     
-    Attribures:
+    Attributes:
         rawInputRDD: RDD[Dict[str,float]] - Must be in the form RDD[{'lat': 130.5, 'lon':-30.5, value: v}]
         bounds - the boundary to cookie cut the rawInputRDD
     Returns: 
-        RDD[Dict[[str,float]]] - with lat, lon as per the soiltech coord system amd inside the bounds
+        RDD[Dict[[str,float]]] - with lat, lon as per the soiltech co-ord system amd inside the bounds
     """
 ```
 
@@ -389,7 +389,7 @@ def SampleAlignProcessor(inputRDD: RDD, sampleData: List[Dict[str,float]]) -> Li
     """
     Aligns sample data to points in the grid if inputRDD
     
-    Attribures:
+    Attributes:
         inputRDD: RDD[Dict[str,float]] - the grid input data as RDD. Must have 'lat', 'lon' and keys.
         sampleData: List[Dict[str,float]] - the sample data. Must have 'lat', 'lon' and keys.
     Returns: 
@@ -431,10 +431,10 @@ def CLHCProcessor(clhcInputRDD: RDD,
     
     Attributes:
         clhcInputRDD -- RDD[Tuple[Tuple[float,float], Dict[str,float]]]
-        numSamples -- The number of sample locations to genrate
+        numSamples -- The number of sample locations to generate
         existingSamples -- List[Tuple[float,float]] a list of existing soil sample locations
         numIterations -- Number of times to iterate
-        excludeLocations -- List[Tuple[LAT,LON]] Locations to exclure (not to choose)
+        excludeLocations -- List[Tuple[LAT,LON]] Locations to exclude (not to choose)
 
     Returns:
         a list of lat, lon locations: List[Tuple[float, float]]
@@ -447,7 +447,7 @@ def CLHCProcessor(clhcInputRDD: RDD,
 ```python
 def PTFProcessor(ptf: AvailablePTFs.PTF, **kwargs) -> float:
     """
-    Calculates a new soil attribute based on existing soil attrubutes via Pedotransfer Functions (ptf).
+    Calculates a new soil attribute based on existing soil attributes via Pedotransfer Functions (ptf).
 
     Attributes:
         ptf: AvailablePTFs.PTF - the Pedotransfer Functions to use.
