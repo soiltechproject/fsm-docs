@@ -10,9 +10,17 @@
 
 ### AWC
 
-**Paper:** Inverse meta-modelling to estimate soil available water capacity at high spatial resolution across a farm
+**Paper:** Predicting and Mapping the Soil Available Water Capacity of Australian Wheatbelt.
 
-*Florin, M. J., A. B. McBratney, B. M. Whelan, and B. Minasny. 2011. “Inverse Meta-Modelling to Estimate Soil Available Water Capacity at High Spatial Resolution across a Farm.” Precision Agriculture 12 (3): 421–38.*
+*Padarian, J., B. Minasny, A. B. McBratney, and N. Dalgliesh. 2014. “Predicting and Mapping the Soil Available Water Capacity of Australian Wheatbelt.” Geoderma Regional 2-3 (November): 110–18.*
+
+**Paper (non-journaled thesis):** Provision of soil water retention information for biophysical modelling: an example for Australia
+
+*Padarian, J. 2014. "Provision of soil water retention information for biophysical modelling: an example for Australia". Provision of soil information for biophysical modelling: 19-50. Faculty of Agriculture and Environment. The University of Sydney*
+
+~**Paper:** Inverse meta-modelling to estimate soil available water capacity at high spatial resolution across a farm~
+
+~*Florin, M. J., A. B. McBratney, B. M. Whelan, and B. Minasny. 2011. “Inverse Meta-Modelling to Estimate Soil Available Water Capacity at High Spatial Resolution across a Farm.” Precision Agriculture 12 (3): 421–38.*~
 
 ### Splining
 
